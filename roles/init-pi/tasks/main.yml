@@ -1,0 +1,37 @@
+- name: configure wifi
+  template:
+    src=wpa_supplicant.conf
+    dest=/etc/wpa_supplicant/wpa_supplicant.conf
+    owner=pi
+    mode=644
+
+- name: add an apt key
+  apt_key: keyserver=keyserver.ubuntu.com id=DB69B232436DAC4B50BDC59E4E1B983C5B393194
+
+- name: update aptget caches and upgrade
+  remote_user: pi
+  apt:
+    update_cache=yes
+    upgrade=full
+
+- name: upgrade dist
+  apt:
+    upgrade=dist
+
+- name: install useful application
+  apt:
+    name={{ item }}
+    state=present
+  with_items:
+    - tightvncserver
+    - ntpdate
+    - ack
+    - vim
+    - git-core
+
+- name: add ntpdate to autostart
+  copy:
+    src=autostart
+    dest=/home/pi/.config/lxsession/LXDE-pi/autostart
+    owner=pi
+    mode=755

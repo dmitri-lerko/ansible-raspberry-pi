@@ -1,0 +1,7 @@
+- name: init-raspberry
+  remote_user: pi
+  become: yes
+  hosts: raspberry
+  roles:
+    - { role: init-pi, tags: [ 'init-pi' ] }
+
