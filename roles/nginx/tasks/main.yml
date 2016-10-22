@@ -1,0 +1,5 @@
+- name: install nginx
+  apt: name=nginx state=latest
+
+- name: copy in jenkins config
+  copy: src=jenkins.conf dest=/etc/nginx/sites-available owner=root group=root mode=0600

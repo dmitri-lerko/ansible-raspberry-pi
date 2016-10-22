@@ -5,3 +5,16 @@
   roles:
     - { role: init-pi, tags: [ 'init-pi' ] }
 
+- name: install jenkins
+  remote_user: pi
+  become: yes
+  hosts: raspberry
+  roles:
+    - { role: jenkins, tags: [ 'jenkins' ] }
+
+- name: install nginx
+  remote_user: pi
+  become: yes
+  hosts: raspberry
+  roles:
+    - { role: nginx, tags: [ 'nginx' ] }
