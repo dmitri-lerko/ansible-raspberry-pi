@@ -18,3 +18,8 @@
   hosts: raspberry
   roles:
     - { role: nginx, tags: [ 'nginx' ] }
+
+- name: install docker
+  hosts: raspberry
+  roles:
+    - { role: docker, tags: [ 'docker' ] }
